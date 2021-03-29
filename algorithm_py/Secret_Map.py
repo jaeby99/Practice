@@ -1,14 +1,9 @@
 def solution(n, arr1, arr2):
     answer=[]
-    for i in range(len(arr1)):
-        st=""
-        for x in range(n-1,-1,-1):
-            num=2**x
-            if arr1[i]>=num or arr2[i]>=num:
-                st+='#'
-                arr1[i]%=num
-                arr2[i]%=num
-            else:
-                st+=" "
-        answer.append(st)
+    for i,j in zip(arr1,arr2):
+        a=str(bin(i|j)[2:])
+        a=a.rjust(n, '0')
+        a=a.replace('1', '#')
+        a=a.replace('0', ' ')
+        answer.append(a)
     return answer
